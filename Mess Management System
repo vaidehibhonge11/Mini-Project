@@ -1,0 +1,147 @@
+//Source Code of Mess Management System
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class manager
+{
+ public:
+  void add_points();
+};
+class customer
+{
+ private:
+  string name;
+  int id;
+long int points;
+ 
+ public:
+  void set_info();
+  string get_name()
+  {
+    return name;
+  }
+void set_points()
+{
+ 
+}
+  int get_id()
+  {
+   return id;
+  }
+  void breakfast();
+  void lunch();
+  void dinner();
+  void display();
+ 
+};
+
+void customer::set_info()
+{
+  cout<<"Enter the name"<<endl;
+  cin>>name;
+  cout<<"Enter the id"<<endl;
+  cin>>id;
+}
+void customer::breakfast()
+  {
+    cout<<"**************************************"<<endl;
+    cout<<"You are having your breakfast"<<endl<<"Its cost is Rs.30"<<endl;
+    points=points-30;
+    cout<<"Your remaining points are: "<<points<<endl;
+    cout<<"**************************************"<<endl;
+  }
+void customer::lunch()
+{
+  cout<<"**************************************"<<endl;
+  cout<<"You are having your lunch"<<endl<<"Its cost is Rs.75"<<endl;
+  points=points-75;
+  cout<<"Your remaining points are: "<<points<<endl;
+  cout<<"**************************************"<<endl;
+}
+void customer::dinner()
+{
+  cout<<"**************************************"<<endl;
+  cout<<"You are having your dinner"<<endl<<"Its cost is Rs.100"<<endl;
+  points=points-100;
+  cout<<"Your remaining points are: "<<points;
+  cout<<"**************************************"<<endl;
+}
+void customer::display()
+{
+  cout<<"Your name is "<<name;
+  cout<<"Your id is "<<id;
+  cout<<"Your balance points are "<<points;
+}
+void ::add_points()
+{
+int n;
+  cout<<"What is the payment amount?"<<endl;
+  cin>>n;
+  points=points+n;
+  cout<<"Now the balance points are "<<points<<endl;
+}
+
+int search(student s[1000],int Id,int no)
+{
+  int c;
+  for(int i=0;i<no;i++)
+    {
+      if(Id==s[i].get_id())
+      {
+        c=i;
+      }
+    }
+  return c;
+}
+int main()
+{
+  int ch;
+  student s[1000];
+  int Id;
+  int n,password=1234,pass;
+  cout<<"Enter the number of students"<<endl;
+  cin>>n;
+  for(int i=0;i<n;i++)
+    {
+      cout<<"For student number "<<i+1<<endl;
+      s[i].set_info();
+    }
+  do
+    {
+      cout<<"Enter the id"<<endl;
+      cin>>Id;
+      double time;
+      int I=search(s,Id,n);
+      cout<<"Enter"<<endl<<"1 to have meal"<<endl<<"2 to display your details"<<endl;
+      cin>>ch;
+      switch(ch)
+        {
+          case 1:
+            {
+              cout<<"Enter the time"<<endl;
+              cin>>time;
+              if(time>=7.30 && time<=9.00)
+                s[I].breakfast();
+              else if (time>=19.30 && time<=21.00)
+                s[I].dinner();
+              else if(time>=12.00 && time<=14.00)
+                s[I].lunch();
+              else
+                cout<<"Now food is not available"<<endl;
+            }
+           break;
+          case 2:
+           s[I].display();
+           break;
+          case 3:
+           cout<<"Enter the password"<<endl;
+           cin>>pass;
+          if(pass==password)
+            s[I].add_points();
+          break;
+        }
+    }while(1);
+ 
+ 
+}
